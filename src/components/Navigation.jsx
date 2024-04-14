@@ -14,7 +14,7 @@ function Navigation() {
             <img src={icon4} alt="logo musculation"/>
         </div>
         <div className="navigation__container__copyright">
-            <h3>Copyright, SportSee 2020</h3>
+            <span className="navigation__container__copyright__text">Copyright, SportSee 2020</span>
         </div>
     </div>
   )
