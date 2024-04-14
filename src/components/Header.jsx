@@ -14,7 +14,7 @@ const Header = () => {
             <h2>Profil</h2>
         </div>
         <div className="header__container__param">
-            <h2>Régalges</h2>
+            <h2>Réglages</h2>
         </div>
         <div className="header__container__community">
             <h2>Communauté</h2>
