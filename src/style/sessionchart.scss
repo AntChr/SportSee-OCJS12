@@ -1,20 +1,7 @@
-.session__chart__container {
+.average-sessions {
     width: 33%;
-    height: 263px;
-    border-radius: 5px;
-    background: #F00;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.02);
-    padding: 10px;
+    background-color: #ff0000;
     margin-right: 30px;
-    &__title {
-        color: #FFF;
-    font-family: Roboto;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 24px;
-    opacity: 0.504;
-    }
 }
 .tooltip__session__style {
     width: 39px;

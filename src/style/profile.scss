@@ -5,6 +5,7 @@
     &__container {
         display: flex;
         width: 100%;
+        max-height: 660px;
         &__charts {
             margin-right: 31px;
             width: 100%;
@@ -41,4 +42,29 @@ p {
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
+    margin-bottom: 71px;
 }
+
+.average-sessions {
+    display: flex;
+    flex-direction: column;
+    min-width: 354px;
+    width: 30%;
+    height: 300px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0212249);
+    position: relative;
+
+    span {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 24px;
+      padding: 10px;
+      color: white;
+      height: 50px;
+      position: absolute;
+      z-index: 2;
+      opacity: 0.504;      
+    }
+  }

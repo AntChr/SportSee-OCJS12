@@ -2,7 +2,7 @@ import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts'
 import '../style/target.scss'
 
 function TargetChart({data}) {
-  const score = data
+  const score = data;
   const dataArray = [{ name: 'score', value: score }]
   return (
     <div className="target__container">

@@ -17,7 +17,13 @@ function PerformanceChart({data}) {
   return (
     <div className='perfomance__chart__container'>
        <ResponsiveContainer width="100%" height="100%">
-        <RadarChart outerRadius={85} data={data}>
+        <RadarChart  
+          cx="50%"
+          cy="50%"
+          outerRadius="80%"
+          data={data}
+          startAngle={90}
+          endAngle={-270}>
           <PolarGrid  radialLines={false}/>
           <PolarAngleAxis dataKey="kind" tickFormatter={formatKind} fill='white'/>
           <PolarRadiusAxis tickCount={6} tick={false} axisLine={false}/>

@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "cross-env vite --open --mode development",
+    "start": "cross-env vite --open --mode production",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "start": "cross-env PORT=8081 react-scr"
+    "preview": "vite preview"
   },
   "dependencies": {
     "axios": "^1.6.8",
