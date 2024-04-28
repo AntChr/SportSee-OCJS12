@@ -2,6 +2,11 @@
     width: 33%;
     background-color: #ff0000;
     margin-right: 30px;
+    @media (max-width: 1024px) {
+        width: 95%;
+        margin-bottom: 10px;
+        margin-right: 0px;
+    }
 }
 .tooltip__session__style {
     width: 39px;

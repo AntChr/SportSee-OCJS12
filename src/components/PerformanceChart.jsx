@@ -2,17 +2,6 @@ import { Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Responsi
 import '../style/performance.scss'
 
 function PerformanceChart({data}) {
-  const formatKind = (kind) => {
-    const kindMap = {
-      1: 'Intensité',
-      2: 'Vitesse',
-      3: 'Force',
-      4: 'Endurance',
-      5: 'Energie',
-      6: 'Cardio',
-    };
-    return kindMap[kind];
-  };
  
   return (
     <div className='perfomance__chart__container'>
@@ -21,11 +10,11 @@ function PerformanceChart({data}) {
           cx="50%"
           cy="50%"
           outerRadius="80%"
-          data={data}
+          data={data.performances}
           startAngle={90}
           endAngle={-270}>
           <PolarGrid  radialLines={false}/>
-          <PolarAngleAxis dataKey="kind" tickFormatter={formatKind} fill='white'/>
+          <PolarAngleAxis dataKey="kind" tickFormatter={(value) => data.dataKind[value].name} fill='white'/>
           <PolarRadiusAxis tickCount={6} tick={false} axisLine={false}/>
           <Radar name="value" dataKey="value" stroke="#FF0101" fill="#FF0101" fillOpacity={0.6} />
         </RadarChart>

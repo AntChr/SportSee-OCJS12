@@ -6,7 +6,8 @@ import "../style/nutrition.scss"
 
 
 function Nutrition({ data }) {
-    const formattedCalories = (data.calorieCount / 1000).toLocaleString(undefined, { minimumFractionDigits: 3 }) + ' kCal';
+    console.log(data);
+    const formattedCalories = (data[0].quantity / 1000).toLocaleString(undefined, { minimumFractionDigits: 3 }) + ' kCal';
   return (
     <div className="nutrition__container">
         <div className="nutrition__container__case">
@@ -23,7 +24,7 @@ function Nutrition({ data }) {
                 <img src={chicken} alt="Protéines" />
             </div>
             <div className="nutrition__container__case__text">
-                <h3>{data.proteinCount}g</h3>
+                <h3>{data[1].quantity}g</h3>
                 <p>Protéines</p>
             </div>
         </div>
@@ -32,7 +33,7 @@ function Nutrition({ data }) {
                 <img src={apple} alt="Glucides" />
             </div>
             <div className="nutrition__container__case__text">
-                <h3>{data.carbohydrateCount}g</h3>
+                <h3>{data[2].quantity}g</h3>
                 <p>Glucides</p>
             </div>
         </div>
@@ -41,7 +42,7 @@ function Nutrition({ data }) {
                 <img src={burger} alt="Lipides" />
             </div>
             <div className="nutrition__container__case__text"> 
-                <h3>{data.lipidCount}g</h3>
+                <h3>{data[3].quantity}g</h3>
                 <p>Lipides</p>
             </div>
         </div>
