@@ -9,49 +9,44 @@ import PerformanceChart from './PerformanceChart';
 import Session from './Session';
 import TargetChart from './TargetChart';
 import Loader from './Loader';
-import Error from './Error';
 
 
 
 function Profil() {
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const userId = 18;
+  const userId = 18; // c'est ici pour changer l'utilisateur qui sera affiché, soit 12 ou 18
+
+  const [userInfo, setUserInfo] = useState({ isLoading: true, data: {}, error: false });
+  const [useractivity, setUserActivity] = useState({ isLoading: true, data: {}, error: false });
+  const [userAverageSessions, setUserAverageSessions] = useState({ isLoading: true, data: {}, error: false });
+  const [userperformance, setUserPerformance] = useState({ isLoading: true, data: {}, error: false });
   
-  const userInfo = useGetUserInfoByUserId(URL_API, userId);
-  const useractivity = useGetActivityByUserId(URL_API, userId);
-  const userAverageSessions = useGetAverageSessionsByUserId(URL_API, userId);
-  const userperformance = useGetPerformanceByUserId(URL_API, userId);
-
   useEffect(() => {
-    async function fetchUserData() {
+    const fetchData = async () => {
       try {
-        const response = await axios.get(`${URL_API}/user/${userId}`);
-        setUserData(response.data.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Erreur lors de la récupération des données utilisateur:', error);
-        setLoading(false);
-      }
+          const Info = await useGetUserInfoByUserId(URL_API, userId);
+          setUserInfo(Info);
+          const Activity = await useGetActivityByUserId(URL_API, userId);
+          setUserActivity(Activity)
+          const AverageSessions = await useGetAverageSessionsByUserId(URL_API, userId);
+          setUserAverageSessions(AverageSessions)
+          const Performance = await useGetPerformanceByUserId(URL_API, userId);
+          setUserPerformance(Performance)
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    fetchUserData();
-    return () => {
-    };
-  }, [userId]);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setLoading(false);
-    }, 5000);
-    return () => clearTimeout(timeout);
+  fetchData();
   }, []);
+
+  if (userInfo.error || useractivity.error || userAverageSessions.error || userperformance.error) 
+  return <section>Oups il y a eu un problème</section>
 
   return (
     <div className="dashboard">
-    {loading ? ( 
-      <Loader />
-    ) : userData ? (
+    {userInfo.isLoading ? (
+        <Loader />
+    ) : (
       <>
         <div>
           <h2 className="title__name">
@@ -61,14 +56,30 @@ function Profil() {
         </div>
         <div className="dashboard__container">
           <div className="dashboard__container__charts">
-            <ActivityChart data={useractivity.data.sessions} />
+           {useractivity.isLoading ? (
+                  <Loader />
+                ) : (
+                  <ActivityChart data={useractivity.data.sessions} />
+                )}
             <div className="dashboard__container__charts__align">
-              <div className="average-sessions">
-                <span>Durée moyenne des sessions</span>
-                <Session data={userAverageSessions.data.sessions} />
-              </div>
+                {userAverageSessions.isLoading ? (
+                  <Loader />
+                ) : (
+                  <div className="average-sessions">
+                    <span>Durée moyenne des sessions</span>
+                    <Session data={userAverageSessions.data.sessions} />
+                  </div>
+                )}
+              {userperformance.isLoading ? (
+                  <Loader />
+                ) : (
               <PerformanceChart data={userperformance.data} />
+                )}
+                {userInfo.isLoading ? (
+                  <Loader />
+                ) : (
               <TargetChart data={userInfo.data.score} />
+                )}
             </div>
           </div>
           <div className="dashboard__container__nutrition">
@@ -76,8 +87,6 @@ function Profil() {
           </div>
         </div>
       </>
-    ) : (
-      <Error/>
     )}
   </div>
   )

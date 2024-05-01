@@ -8,11 +8,9 @@ export const useGet = (url, model) => {
 
   useEffect(() => {
     setLoading(true)
-    console.log(url);
     axios
       .get(url)
       .then((response) => {
-        console.log(response.data.data)
         setData(model(response.data.data))
       })
       .catch((error) => {

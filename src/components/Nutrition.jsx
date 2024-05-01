@@ -6,7 +6,6 @@ import "../style/nutrition.scss"
 
 
 function Nutrition({ data }) {
-    console.log(data);
     const formattedCalories = (data[0].quantity / 1000).toLocaleString(undefined, { minimumFractionDigits: 3 }) + ' kCal';
   return (
     <div className="nutrition__container">

@@ -8,7 +8,7 @@ import { createServer } from 'miragejs'
 import { USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_MAIN_DATA, USER_PERFORMANCE } from './data'
 
 const routes = [
-  { name: '', data: USER_MAIN_DATA, findBy: 'id', timing: 1000 },
+  { name: '', data: USER_MAIN_DATA, findBy: 'id', timing: 2000 },
   {
     name: '/activity',
     data: USER_ACTIVITY,
