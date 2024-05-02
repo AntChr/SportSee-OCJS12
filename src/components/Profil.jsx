@@ -1,14 +1,14 @@
 /* eslint-disable no-undef */
 import { useEffect, useState } from 'react'
-import axios from 'axios';
 import '../style/profile.scss'
-import { useGetUserInfoByUserId, useGetActivityByUserId, useGetAverageSessionsByUserId, useGetPerformanceByUserId } from '../utils/apiHandler'
+import { getUserInfoByUserId, getActivityByUserId, getAverageSessionsByUserId, getPerformanceByUserId } from '../utils/apiHandler'
 import Nutrition from './Nutrition';
 import ActivityChart from './ActivityChart';
 import PerformanceChart from './PerformanceChart';
 import Session from './Session';
 import TargetChart from './TargetChart';
 import Loader from './Loader';
+import Error from './Error'
 
 
 
@@ -23,13 +23,13 @@ function Profil() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-          const Info = await useGetUserInfoByUserId(URL_API, userId);
+          const Info = await getUserInfoByUserId(URL_API, userId);
           setUserInfo(Info);
-          const Activity = await useGetActivityByUserId(URL_API, userId);
+          const Activity = await getActivityByUserId(URL_API, userId);
           setUserActivity(Activity)
-          const AverageSessions = await useGetAverageSessionsByUserId(URL_API, userId);
+          const AverageSessions = await getAverageSessionsByUserId(URL_API, userId);
           setUserAverageSessions(AverageSessions)
-          const Performance = await useGetPerformanceByUserId(URL_API, userId);
+          const Performance = await getPerformanceByUserId(URL_API, userId);
           setUserPerformance(Performance)
     } catch (error) {
       console.error(error);
@@ -40,7 +40,9 @@ function Profil() {
   }, []);
 
   if (userInfo.error || useractivity.error || userAverageSessions.error || userperformance.error) 
-  return <section>Oups il y a eu un problème</section>
+  return <>
+           <Error/>
+         </>
 
   return (
     <div className="dashboard">

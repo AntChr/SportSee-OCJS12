@@ -20,7 +20,7 @@ const urlAverageSessionsById = (URL,id) => `${URL}/user/${id}/average-sessions`
 const urlPerformanceById = (URL,id) => `${URL}/user/${id}/performance`
 
 
-export const useGetUserInfoByUserId = async (URL, id) => {
+export const getUserInfoByUserId = async (URL, id) => {
     try {
       const data = await fetchData(urlUserInfoById(URL, id), data => new User(data));
       return { isLoading: false, data, error: false };
@@ -29,7 +29,7 @@ export const useGetUserInfoByUserId = async (URL, id) => {
     }
   };
   
-  export const useGetActivityByUserId = async (URL, id) => {
+  export const getActivityByUserId = async (URL, id) => {
     try {
       const data = await fetchData(urlActivityById(URL, id), data => new Activity(data));
       return { isLoading: false, data, error: false };
@@ -38,7 +38,7 @@ export const useGetUserInfoByUserId = async (URL, id) => {
     }
   };
   
-  export const useGetAverageSessionsByUserId = async (URL, id) => {
+  export const getAverageSessionsByUserId = async (URL, id) => {
     try {
       const data = await fetchData(urlAverageSessionsById(URL, id), data => new AverageSessions(data));
       return { isLoading: false, data, error: false };
@@ -47,7 +47,7 @@ export const useGetUserInfoByUserId = async (URL, id) => {
     }
   };
   
-  export const useGetPerformanceByUserId = async (URL, id) => {
+  export const getPerformanceByUserId = async (URL, id) => {
     try {
       const data = await fetchData(urlPerformanceById(URL, id), data => new Performance(data));
       return { isLoading: false, data, error: false };
